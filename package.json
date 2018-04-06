@@ -1,0 +1,27 @@
+{
+  "name": "jtimers",
+  "version": "1.0.0",
+  "description": "Contadors de f1",
+  "private": true,
+  "main": "gulpfile.js",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^4.7.0",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.0",
+    "vue": "^2.5.16",
+    "vue-clock": "^0.3.1"
+  },
+  "devDependencies": {
+    "gulp-browserify": "^0.5.1",
+    "gulp-uglify": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lluis Andreu Oliver Obrador",
+  "license": "ISC",
+  "browser": {
+    "vue": "vue/dist/vue.common.js"
+  }
+}
