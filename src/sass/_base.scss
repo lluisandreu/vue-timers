@@ -1,20 +1,53 @@
 body {
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0068b7+0,0060a8+100 */
-    background: rgb(0, 104, 183); /* Old browsers */
-    background: -moz-radial-gradient(center, ellipse cover, rgba(0, 104, 183, 1) 0%, rgba(0, 96, 168, 1) 100%); /* FF3.6-15 */
-    background: -webkit-radial-gradient(center, ellipse cover, rgba(0, 104, 183, 1) 0%, rgba(0, 96, 168, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: radial-gradient(ellipse at center, rgba(0, 104, 183, 1) 0%, rgba(0, 96, 168, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0068b7', endColorstr='#0060a8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background-image: url("../assets/bg.jpg");
+    background-size: cover;
 }
 
 .row-padding {
-    padding: 50px 0;
+    padding: 40px 0;
 }
 
 // Cards
 
+@keyframes example {
+    from {
+        background-color: $white;
+    }
+
+    to {
+        background-color: $red;
+    }
+}
+
 .card {
-    min-height: 400px;
+    min-height: 300px;
+}
+
+.card.running {
+    background-color: $white !important;
+
+    .card-title {
+        color: $gray-800 !important;
+    }
+}
+
+.card.ended {
+    background-color: $red !important;
+    animation-name: example;
+    animation-duration: .6s;
+    animation-iteration-count: 6;
+
+    .card-title {
+        color: $white !important;
+    }
+
+    .card-footer {
+        background-color: $white !important;
+    }
+
+    .timer {
+        color: $white;
+    }
 }
 
 // Timer

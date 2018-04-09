@@ -3,28 +3,20 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Cronometro Sim F1</title>
+	<title>Stopwatch Rafa Nadal Museum Experience</title>
 	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link rel="stylesheet" href="dist/css/app.css">
 </head>
 <body>
 	<div class="container-fluid" id="app">
 		<div class="row row-padding">
-			<div class="col-md-6 text-left">
-				<img src="dist/assets/logo.png" alt="logo">
-			</div>
-			<div class="col-md-6 text-right">
-				<button type="button" class="btn btn-success btn-lg" v-on:click="resetSim()">Reset SIM</button>
+			<div class="col-md-12 text-center">
+				<img src="dist/assets/logo.png" alt="logo" width="300">
 			</div>
 		</div>
 		<div class="row row-padding justify-content-md-center timers">
-			<div class="col-md-3" v-if="timers[index].display" v-for="(timer, index) in timers">
-				<div class="card border-dark text-center text-white bg-dark mb-3">
-					<div class="card-header">
-						<button type="button" class="close" aria-label="Close" @click="timers[index].display = false">
-						  <span aria-hidden="true" style="color: white">&times;</span>
-						</button>
-					</div>
+			<div class="col-md-3" v-for="(timer, index) in timers">
+				<div class="card text-center text-white bg-dark mb-3" v-bind:class="{ 'ended': timers[index].ended, 'running' : timers[index].isRunning }">
 					<div class="card-body">
 						<h3 class="card-title text-center display-4">SIM {{ index + 1}}</h3>
 						<div class="timer">
@@ -41,12 +33,12 @@
 					</div>
 					<div class="card-footer">
 						
-						<button type="button" class="btn btn-success btn-sm" v-on:click="start(index,0)"><i class="fa fa-play"></i></button>
-						<button type="button" class="btn btn-success btn-sm" v-on:click="start(index,2)">2 Min</button>
-						<button type="button" class="btn btn-success btn-sm" v-on:click="start(index,3)">3 Min</button>
-						<button type="button" class="btn btn-danger btn-sm" v-on:click="stopTimer(index)"><i class="fa fa-stop-circle"></i></button>
-						<button type="button" class="btn btn-warning btn-sm" v-on:click="clear(index)"><i class="fa fa-undo"></i></button>
-						<button type="button" class="btn btn-secondary btn-sm float-right" v-on:click="pushTime(index)"><i class="fa fa-flag-checkered"></i></button>
+						<button type="button" class="btn btn-outline-success btn" v-on:click="start(index,0)"><i class="fa fa-play"></i></button>
+						<button type="button" class="btn btn-outline-success btn" v-on:click="start(index,2)">2'</button>
+						<button type="button" class="btn btn-outline-success btn" v-on:click="start(index,3)">3'</button>
+						<button type="button" class="btn btn-outline-danger btn" v-on:click="stopTimer(index)"><i class="fa fa-stop-circle"></i></button>
+						<button type="button" class="btn btn-outline-warning btn" v-on:click="clear(index)"><i class="fa fa-undo"></i></button>
+						<button type="button" class="btn btn-outline-secondary btn float-right" v-on:click="pushTime(index)"><i class="fa fa-flag-checkered"></i></button>
 					</div>
 				</div>
 			</div>

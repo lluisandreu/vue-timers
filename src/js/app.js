@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', function () {
 	  created: function() {
 	  	for (var i = 0; i < 4; i++) {
 	  		this.timers.push({
-		  		display: true,
 		  		times: [],
 			    animateFrame: 0,
 			    nowTime: 0,
@@ -17,6 +16,7 @@ window.addEventListener('DOMContentLoaded', function () {
 			    startTime: 0,
 			    isRunning: false,
 			    limit: 0,
+			    ended: false,
 	  		});
 	  	};
 	  },
@@ -25,8 +25,10 @@ window.addEventListener('DOMContentLoaded', function () {
 	  		handler: function(timer) {
 	  			for (var i = 0; i < timer.length; i++) {
 	  				if(timer[i].isRunning) {
-	  					if(timer[i].diffTime > timer[i].limit) {
+	  					if((timer[i].nowTime - timer[i].startTime) > timer[i].limit) {
+	  						timer[i].ended = true;
 	  						this.stopTimer(i);
+	  						timer[i].diffTime = timer[i].limit;
 	  					}
 	  				}
 	  			};
@@ -36,6 +38,10 @@ window.addEventListener('DOMContentLoaded', function () {
 	  },
 	  methods: {
 	    start: function(timer,min) {
+	    	this.timers[timer].ended = false;
+	    	if(this.timers[timer].isRunning) {
+	    		this.stopTimer(timer);
+	    	}
 	    	if(min != 0) {
 	    		this.timers[timer].limit = min * 60 * 1000;
 	    	} else {
@@ -86,6 +92,7 @@ window.addEventListener('DOMContentLoaded', function () {
 	    },
 	    clear: function (timer) {
 	   		var t = this.timers[timer];
+	   		t.ended = false;
 	      	t.startTime = 0;
 	      	t.nowTime = 0;
 	      	t.diffTime = 0;
@@ -96,11 +103,6 @@ window.addEventListener('DOMContentLoaded', function () {
 	    clearAll: function() {
 	    	for (var i = 0; i < this.timers.length; i++) {
 	    		this.clear(i);
-	    	};
-	    },
-	    resetSim: function() {
-	    	for (var i = 0; i < this.timers.length; i++) {
-	    		this.timers[i].display = true;
 	    	};
 	    },
 	    hours: function (timer) {
